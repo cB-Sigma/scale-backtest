@@ -1,0 +1,6 @@
+{"timestamp": "2026-01-01T09:00:00.120Z", "prompt_tokens": 512, "output_tokens": 180, "model": "chat-8b", "tenant": "acme"}
+{"timestamp": "2026-01-01T09:00:00.870Z", "prompt_tokens": 1890, "output_tokens": 420, "model": "chat-8b", "tenant": "acme"}
+{"timestamp": "2026-01-01T09:00:02.310Z", "prompt_tokens": 96, "output_tokens": 35, "model": "chat-8b", "tenant": "globex"}
+{"timestamp": "2026-01-01T09:00:03.005Z", "prompt_tokens": 760, "output_tokens": 610, "model": "chat-8b", "tenant": "initech"}
+{"timestamp": "2026-01-01T09:00:03.450Z", "prompt_tokens": 2400, "output_tokens": 90, "model": "code-8b", "tenant": "globex"}
+{"timestamp": "2026-01-01T09:00:05.900Z", "prompt_tokens": 330, "output_tokens": 256, "model": "chat-8b", "tenant": "acme"}

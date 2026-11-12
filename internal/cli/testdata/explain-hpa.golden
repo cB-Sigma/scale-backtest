@@ -1,0 +1,13 @@
+HPA vllm-token-throughput
+
+HPA control loop
+  minReplicas 1, maxReplicas 8
+  metric tokens_per_second (Pods/AverageValue): target 350 <- simulated rate of generation_tokens_total
+  metric vllm:num_requests_waiting (Pods/AverageValue): target 2 <- simulated requests_waiting
+  behavior (after API defaulting)
+    scaleUp: stabilizationWindow 0s, selectPolicy Max
+      - Pods 4 per 15s
+      - Percent 100 per 15s
+    scaleDown: stabilizationWindow 300s, selectPolicy Max
+      - Percent 50 per 60s
+  tolerance: scale up 0.1, scale down 0.1; sync period 15s (controller defaults unless overridden by flags)

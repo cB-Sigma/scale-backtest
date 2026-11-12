@@ -1,0 +1,46 @@
+HPA vllm-queue-depth · trace demo (4,797 requests over 45m00s) · replica model demo-gpu
+
+Latency (completed requests, queueing included)
+               mean     p50    p90    p95    p99    max
+  TTFT        7.80s  0.144s  28.7s  54.1s  1m50s  2m09s
+  End-to-end  16.6s   7.42s  44.0s  69.3s  2m07s  2m47s
+  Queue wait  7.63s      0s  28.4s  54.0s  1m50s  2m08s
+
+Targets (all requests; a dropped request misses its targets)
+  TTFT <= 2.00s        80.4%  941 missed
+  End-to-end <= 60.0s  93.3%  320 missed
+  Both                 80.3%  944 missed
+
+Requests  4,797 completed · 0 dropped · 0 arrived with no ready replica
+Replicas  start 1 · ready min 1 / mean 3.69 / max 8 · 21 cold starts · 17 scale events
+  ready     ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▃▇███████▂▂▅▇███████▂▂▂▂▂▂▂▂▃█████████▅▂▂▂▂▂▂▂  0..8
+  arrivals  ▂▂▂▂▂▂▂▂▂▂▂▃▄▅▆▆▆▇▇▅▅▆▆▆▅▅▄▃▃▃▃▃▃▃▃▃▃▃▃▃▄████████▅▃▂▃▂▂▂▂▂▂▂  0..4.7 req/s
+  waiting   ▁▁▁▁▁▁▁▁▁▁▁▁▂▃▃▃▁▁▁▁▁▁▁▂▃▅▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▅██▅▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁  0..214 requests
+Cost      3.40 GPU-hours · $8.50 at $2.50 per GPU-hour · $4.47 per 1M output tokens
+          busy 74.5% · idle 7.99% · starting 17.6% · mean batch fill 17.7%
+
+Scale events (first 12 of 17; --max-events 0 shows all)
+  00:09:15  1 -> 2  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=6/5 -> 2
+  00:09:45  2 -> 4  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=24/5 -> 5; limited: ScaleUpLimit
+  00:10:00  4 -> 6  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=26/5 -> 6
+  00:10:15  6 -> 8  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=37/5 -> 8
+  00:16:45  8 -> 4  HPA  All metrics below target
+                           vllm:num_requests_waiting=0/5 -> 0; ScaleDownStabilized
+  00:17:00  4 -> 2  HPA  All metrics below target
+                           vllm:num_requests_waiting=0/5 -> 0; ScaleDownStabilized
+  00:17:15  2 -> 1  HPA  All metrics below target
+                           vllm:num_requests_waiting=0/5 -> 0; ScaleDownStabilized
+  00:17:30  1 -> 2  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=8/5 -> 2
+  00:17:45  2 -> 4  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=24/5 -> 5; limited: ScaleUpLimit
+  00:18:00  4 -> 8  HPA  pods metric vllm:num_requests_waiting above target
+                           vllm:num_requests_waiting=38/5 -> 8
+  00:25:00  8 -> 3  HPA  All metrics below target
+                           vllm:num_requests_waiting=0/5 -> 0; ScaleDownStabilized
+  00:25:15  3 -> 1  HPA  All metrics below target
+                           vllm:num_requests_waiting=0/5 -> 0; ScaleDownStabilized

@@ -1,0 +1,19 @@
+sweep of HPA vllm-running-requests · trace demo (4,797 requests over 45m00s) · replica model demo-gpu
+
+minReplicas  target  attained  TTFT p50  TTFT p95  E2E p95  dropped  ready mean/max  GPU-h    cost   idle  SLO   frontier
+          3      16    99.97%    0.135s    0.388s    22.8s        0           3.2/4   2.45   $6.14  11.3%  PASS  *
+          2      16     72.2%    0.180s     37.9s    53.7s        0           3.1/6   2.50   $6.26  15.3%  FAIL
+          1      16     68.3%    0.203s     45.9s    63.0s        0           3.2/8   2.73   $6.82  20.8%  FAIL
+          3      12      100%    0.129s    0.367s    21.1s        0           3.8/5   2.94   $7.35  13.0%  PASS  *
+          1      12     87.0%    0.144s     13.3s    31.5s        0           3.9/8   3.19   $7.98  18.4%  FAIL
+          2      12     87.5%    0.139s     15.3s    31.5s        0           4.1/8   3.32   $8.29  19.0%  FAIL
+          2       8      100%    0.122s    0.351s    19.9s        0           4.4/7   3.55   $8.87  15.2%  PASS
+          3       8      100%    0.121s    0.346s    19.5s        0           4.7/7   3.69   $9.22  16.6%  PASS
+          1       8     89.5%    0.131s     8.37s    26.8s        0           4.6/8   3.78   $9.45  16.7%  FAIL
+          2       4      100%    0.114s    0.322s    17.8s        0           6.1/8   4.89  $12.22  19.4%  PASS
+          1       4      100%    0.114s    0.327s    18.0s        0           6.1/8   4.91  $12.27  19.2%  PASS
+          3       4      100%    0.113s    0.320s    17.5s        0           6.4/8   5.02  $12.56  20.2%  PASS
+
+* = on the cost-versus-attainment frontier (no other setting is both cheaper and better)
+attained = share of all requests completed within TTFT <= 2.00s and end-to-end <= 60.0s
+cheapest setting that meets the SLO: minReplicas=3 target=16 ($6.14, 99.97% attained)

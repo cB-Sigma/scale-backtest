@@ -1,0 +1,28 @@
+# Native HPA scale to zero (feature gate HPAScaleToZero) on an external
+# metric: requests in flight as seen by the gateway, 12 per replica.
+#
+# The metric must come from in front of the replicas. A metric exported by the
+# replicas themselves has no series at zero replicas and could never bring the
+# workload back.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: vllm-scale-to-zero
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: vllm
+  minReplicas: 0
+  maxReplicas: 8
+  metrics:
+    - type: External
+      external:
+        metric:
+          name: gateway_requests_in_flight
+        target:
+          type: AverageValue
+          averageValue: "12"
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300

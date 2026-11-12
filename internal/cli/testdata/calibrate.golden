@@ -1,0 +1,48 @@
+Fitted 8 points from ../../examples/benchmarks/concurrency-sweep.csv (csv)
+
+decode   tpot(n) = 13.922 ms + 0.9072 ms x n   (peak throughput 672 tokens/s at n=24)
+prefill  40.0 ms + 0.1501 ms per prompt token, x (1 + 0.0400 x (n-1))
+
+concurrency     TPOT ms     fitted     TTFT ms     fitted    tokens/s     fitted
+          1       14.80      14.83       131.0      130.1          66         67
+          2       15.90      15.74       134.0      135.3         123        127
+          4       17.40      17.55       147.0      145.7         224        228
+          8       21.40      21.18       165.0      166.4         364        378
+         12       24.50      24.81       188.0      187.2         476        484
+         16       28.60      28.44       206.0      208.0         545        563
+         20       31.80      32.07       231.0      228.8         612        624
+         24       35.90      35.69       249.0      249.6         650        672
+
+Goodness of fit
+  TPOT        R2 0.9992 · RMSE 0.204 ms · mean error 0.79% · worst error 1.26% (8 points)
+  TTFT        R2 0.9988 · RMSE 1.42 ms · mean error 0.75% · worst error 0.97% (8 points)
+  throughput  R2 0.9965 · RMSE 12.4 tokens/s · mean error 2.66% · worst error 3.77% (8 points)
+note: prefill fitted for a mean prompt of 600 tokens; one prompt length cannot separate the fixed part of TTFT from the per-token part, so prefill.baseSeconds is taken as given (0.04s)
+
+Cold start from 2 doriki report(s)
+  ../../examples/coldstart/doriki-warm-node.json: 98.5s to Ready [image-pull 41.0s, container-init 1.20s, engine-init 6.40s, weight-load 38.5s, graph-capture 9.10s, kv-alloc 0.600s, server-ready 1.70s]
+  ../../examples/coldstart/doriki-new-node.json: 4m46s to Ready (3m00s of it node provisioning, left to node.provisionDelay) [node-provision 3m00s, image-pull 43.9s, container-init 1.28s, engine-init 6.85s, weight-load 41.2s, graph-capture 9.74s, kv-alloc 0.642s, server-ready 1.82s]
+
+---
+coldStart:
+  samples:
+  - 98.5s
+  - 106s
+cost:
+  gpuPricePerHour: 2.5
+  gpusPerReplica: 1
+decode:
+  baseSecondsPerToken: 0.0139218
+  secondsPerTokenPerRequest: 0.000907186
+description: Synthetic example, not a measurement of any real engine or GPU.
+kind: ReplicaModel
+maxConcurrency: 24
+name: demo-gpu
+node:
+  provisionDelay:
+    constant: 0s
+prefill:
+  baseSeconds: 0.04
+  interference: 0.0399512
+  secondsPerToken: 0.000150105
+terminationGracePeriod: 600s

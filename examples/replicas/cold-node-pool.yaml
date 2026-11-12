@@ -1,0 +1,38 @@
+# The same engine as demo-gpu.yaml, in a cluster where every new replica needs
+# a new GPU node: 2-4 minutes of provisioning before the container can even
+# start, and the node lingers for 10 minutes after its pod is gone (the
+# cluster autoscaler's scale-down delay), billed but reusable.
+kind: ReplicaModel
+name: cold-node-pool
+description: Synthetic example, not a measurement of any real engine or GPU.
+
+prefill:
+  baseSeconds: 0.04
+  secondsPerToken: 0.00015
+  interference: 0.04
+
+decode:
+  curve:                     # measured points instead of the two-parameter line
+    - {concurrency: 1,  secondsPerToken: 0.0149}
+    - {concurrency: 4,  secondsPerToken: 0.0176}
+    - {concurrency: 8,  secondsPerToken: 0.0212}
+    - {concurrency: 16, secondsPerToken: 0.0284}
+    - {concurrency: 24, secondsPerToken: 0.0356}
+
+maxConcurrency: 24
+maxQueue: 200
+
+coldStart:
+  constant: 110s
+
+node:
+  provisionDelay:
+    percentiles: {p50: 150s, p90: 210s, p99: 240s}
+  keepWarm: 10m
+  spareNodes: 0
+
+terminationGracePeriod: 300s
+
+cost:
+  gpuPricePerHour: 2.50
+  gpusPerReplica: 1

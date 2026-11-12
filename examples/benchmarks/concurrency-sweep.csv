@@ -1,0 +1,11 @@
+# Synthetic load-test result (not measured on real hardware): a closed-loop
+# sweep at fixed concurrency, 600-token prompts, 400-token outputs.
+concurrency,ttft_ms,tpot_ms,throughput_tokens_per_s,prompt_tokens,output_tokens
+1,131,14.8,66,600,400
+2,134,15.9,123,600,400
+4,147,17.4,224,600,400
+8,165,21.4,364,600,400
+12,188,24.5,476,600,400
+16,206,28.6,545,600,400
+20,231,31.8,612,600,400
+24,249,35.9,650,600,400

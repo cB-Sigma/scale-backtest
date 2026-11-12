@@ -1,0 +1,27 @@
+# KEDA scale to zero. The trigger reads the gateway, not the replicas: at zero
+# replicas the replicas export nothing, so only a metric from in front of them
+# can wake the deployment up.
+#
+# 0 -> 1 is KEDA's decision (activationThreshold, every pollingInterval);
+# 1 -> N is the generated HPA's; N -> 0 happens cooldownPeriod after the last
+# poll that saw the trigger active.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: vllm-keda-zero
+  namespace: inference
+spec:
+  scaleTargetRef:
+    name: vllm
+  pollingInterval: 15
+  cooldownPeriod: 300
+  minReplicaCount: 0
+  maxReplicaCount: 8
+  triggers:
+    - type: prometheus
+      name: in-flight
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc:9090
+        query: gateway_requests_in_flight
+        threshold: "12"
+        activationThreshold: "0"

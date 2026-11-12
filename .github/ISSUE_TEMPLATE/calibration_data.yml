@@ -1,0 +1,24 @@
+name: Calibration or validation data
+description: Share how the replica model compares with a real engine
+labels: [validation]
+body:
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup
+      description: Engine and version, model, GPU, batch limit, prompt and output lengths.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Benchmark data
+      description: The benchmark CSV or GuideLLM report, and the output of `scale-backtest calibrate`.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: comparison
+    attributes:
+      label: Simulated against measured
+      description: If you replayed a trace on a real cluster, how did latency and replica counts compare?

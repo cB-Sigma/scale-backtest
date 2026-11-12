@@ -1,0 +1,20 @@
+name: Feature request
+description: A manifest field, trigger, metric, trace format or output you need
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to backtest?
+      description: The policy or situation the tool cannot handle today. A manifest snippet helps.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: For autoscaler features, link the documentation that defines the behaviour.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workarounds you have tried

@@ -1,0 +1,431 @@
+{
+ "metadata": {
+  "note": "Synthetic sample holding only the fields scale-backtest reads from a GuideLLM benchmarks.json report. Not produced by GuideLLM, not measured on real hardware."
+ },
+ "benchmarks": [
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 0.99,
+      "median": 1,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 136.24,
+      "median": 131,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 14.8,
+      "median": 14.8,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 15.128,
+      "median": 15.128,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 66,
+      "median": 66,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 1.98,
+      "median": 2,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 139.36,
+      "median": 134,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 15.9,
+      "median": 15.9,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 16.235,
+      "median": 16.235,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 123,
+      "median": 123,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 3.96,
+      "median": 4,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 152.88,
+      "median": 147,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 17.4,
+      "median": 17.4,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 17.767,
+      "median": 17.767,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 224,
+      "median": 224,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 7.92,
+      "median": 8,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 171.6,
+      "median": 165,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 21.4,
+      "median": 21.4,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 21.812,
+      "median": 21.812,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 364,
+      "median": 364,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 11.88,
+      "median": 12,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 195.52,
+      "median": 188,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 24.5,
+      "median": 24.5,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 24.97,
+      "median": 24.97,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 476,
+      "median": 476,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 15.84,
+      "median": 16,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 214.24,
+      "median": 206,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 28.6,
+      "median": 28.6,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 29.115,
+      "median": 29.115,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 545,
+      "median": 545,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 19.8,
+      "median": 20,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 240.24,
+      "median": 231,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 31.8,
+      "median": 31.8,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 32.377,
+      "median": 32.377,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 612,
+      "median": 612,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  },
+  {
+   "metrics": {
+    "request_concurrency": {
+     "successful": {
+      "mean": 23.76,
+      "median": 24,
+      "count": 200
+     }
+    },
+    "time_to_first_token_ms": {
+     "successful": {
+      "mean": 258.96,
+      "median": 249,
+      "count": 200
+     }
+    },
+    "inter_token_latency_ms": {
+     "successful": {
+      "mean": 35.9,
+      "median": 35.9,
+      "count": 200
+     }
+    },
+    "time_per_output_token_ms": {
+     "successful": {
+      "mean": 36.523,
+      "median": 36.523,
+      "count": 200
+     }
+    },
+    "output_tokens_per_second": {
+     "successful": {
+      "mean": 650,
+      "median": 650,
+      "count": 200
+     }
+    },
+    "prompt_token_count": {
+     "successful": {
+      "mean": 600,
+      "median": 600,
+      "count": 200
+     }
+    },
+    "output_token_count": {
+     "successful": {
+      "mean": 400,
+      "median": 400,
+      "count": 200
+     }
+    }
+   }
+  }
+ ]
+}

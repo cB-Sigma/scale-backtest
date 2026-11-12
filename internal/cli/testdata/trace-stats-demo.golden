@@ -1,0 +1,7 @@
+trace demo (csv)
+  requests        4,797 over 45m00s
+  arrival rate    mean 1.78 req/s · peak 12.00 (1s) / 5.80 (10s) / 4.63 (60s) · peak-to-mean 2.61 (60s)
+  burstiness      inter-arrival CV 1.65 · index of dispersion 11.94 (10s) / 65.16 (60s)   [Poisson: 1 / 1 / 1]
+  prompt tokens   mean 601 · p50 422 · p90 1242 · p99 2912 · max 8000   (1067 tokens/s)
+  output tokens   mean 396 · p50 305 · p90 779 · p99 1669 · max 2000   (704 tokens/s)
+  rate            ▂▂▂▂▂▂▂▂▂▂▂▄▅▅▆▆▇▆▆▆▅▆▆▆▅▅▄▃▃▃▃▃▃▃▃▃▃▂▃▃▅███████▇▅▃▂▃▂▂▂▂▂▂▂  0..4.7 req/s

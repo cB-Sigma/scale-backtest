@@ -1,0 +1,12 @@
+sweep of KEDA ScaledObject vllm-keda-zero · trace demo (4,797 requests over 45m00s) · replica model demo-gpu
+
+cooldownPeriod  target  attained  TTFT p50  TTFT p95  E2E p95  dropped  ready mean/max  GPU-h   cost   idle  frontier
+            60      12     88.7%    0.138s     12.6s    30.4s        0           3.3/8   2.97  $7.44  9.14%  *
+           300      12     88.7%    0.138s     12.6s    30.4s        0           3.3/8   2.97  $7.44  9.14%  *
+           900      12     88.7%    0.138s     12.6s    30.4s        0           3.3/8   2.97  $7.44  9.14%  *
+            60       8     89.0%    0.130s     11.8s    28.7s        0           4.3/8   3.84  $9.59  13.5%  *
+           300       8     89.0%    0.130s     11.8s    28.7s        0           4.3/8   3.84  $9.59  13.5%  *
+           900       8     89.0%    0.130s     11.8s    28.7s        0           4.3/8   3.84  $9.59  13.5%  *
+
+* = on the cost-versus-attainment frontier (no other setting is both cheaper and better)
+attained = share of all requests completed within TTFT <= 2.00s and end-to-end <= 60.0s

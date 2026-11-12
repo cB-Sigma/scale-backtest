@@ -1,0 +1,36 @@
+# KEDA ScaledObject with two Prometheus triggers: running requests across the
+# deployment (12 per replica) and the queue as a backstop. minReplicaCount 1,
+# so KEDA never scales to zero and the generated HPA does all the work.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: vllm-keda
+  namespace: inference
+spec:
+  scaleTargetRef:
+    name: vllm
+  pollingInterval: 15
+  minReplicaCount: 1
+  maxReplicaCount: 8
+  advanced:
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 300
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 60
+  triggers:
+    - type: prometheus
+      name: running
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc:9090
+        query: sum(vllm:num_requests_running)
+        threshold: "12"
+    - type: prometheus
+      name: waiting
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc:9090
+        query: sum(vllm:num_requests_waiting)
+        threshold: "3"

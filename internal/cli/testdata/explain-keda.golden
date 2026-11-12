@@ -1,0 +1,24 @@
+KEDA ScaledObject vllm-keda
+
+KEDA operator loop (0 <-> 1)
+  pollingInterval 15s, cooldownPeriod 300s, initialCooldownPeriod 0s
+  minReplicaCount 1, maxReplicaCount 8
+  minReplicaCount >= 1: the scaler is always active and activation thresholds are ignored
+  trigger running: sum(vllm:num_requests_running)
+    evaluated as sum(vllm:num_requests_running) over simulated metric requests_running
+    threshold 12 (AverageValue), activationThreshold 0
+  trigger waiting: sum(vllm:num_requests_waiting)
+    evaluated as sum(vllm:num_requests_waiting) over simulated metric requests_waiting
+    threshold 3 (AverageValue), activationThreshold 0
+
+Generated HPA keda-hpa-vllm-keda (1 <-> N)
+  minReplicas 1, maxReplicas 8
+  metric s0-prometheus (External/AverageValue): target 12 <- simulated requests_running
+  metric s1-prometheus (External/AverageValue): target 3 <- simulated requests_waiting
+  behavior (after API defaulting)
+    scaleUp: stabilizationWindow 0s, selectPolicy Max
+      - Pods 4 per 15s
+      - Percent 100 per 15s
+    scaleDown: stabilizationWindow 300s, selectPolicy Max
+      - Pods 1 per 60s
+  tolerance: scale up 0.1, scale down 0.1; sync period 15s (controller defaults unless overridden by flags)

@@ -1,0 +1,31 @@
+# A made-up replica: one mid-range GPU serving a 7-8B model with continuous
+# batching. The numbers are plausible, not measured. Calibrate your own with
+# `scale-backtest calibrate` (see docs/model.md).
+kind: ReplicaModel
+name: demo-gpu
+description: Synthetic example, not a measurement of any real engine or GPU.
+
+prefill:
+  baseSeconds: 0.04          # fixed part of time to first token
+  secondsPerToken: 0.00015   # per prompt token, request running alone
+  interference: 0.04         # +4% prefill time per other request in the batch
+
+decode:
+  # tpot(n) = 14 ms + 0.9 ms x n  ->  67 tokens/s alone, 28 tokens/s per
+  # request and 674 tokens/s in total with a full batch of 24.
+  baseSecondsPerToken: 0.014
+  secondsPerTokenPerRequest: 0.0009
+
+maxConcurrency: 24           # vLLM --max-num-seqs
+# maxQueue: unset = unbounded, like vLLM
+
+coldStart:
+  percentiles:               # scheduled -> Ready: image pull, weights, warm-up
+    p50: 95s
+    p90: 130s
+    p99: 180s
+
+terminationGracePeriod: 600s
+
+cost:
+  gpuPricePerHour: 2.50

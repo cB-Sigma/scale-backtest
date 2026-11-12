@@ -1,0 +1,30 @@
+# Binaries
+/bin/
+/dist/
+/scale-backtest
+*.exe
+*.test
+*.out
+
+# Go
+coverage.*
+*.prof
+vendor/
+
+# Outputs of local runs
+/timeline.csv
+/events.csv
+/requests.csv
+/*.local.csv
+/*.local.yaml
+
+# Large traces are not kept in the repository
+/traces/
+*.csv.gz
+AzureLLMInferenceTrace_*.csv
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store

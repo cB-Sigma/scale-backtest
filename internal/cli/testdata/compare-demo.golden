@@ -1,0 +1,18 @@
+trace demo (4,797 requests over 45m00s) · replica model demo-gpu
+
+policy                            attained  TTFT p50  TTFT p95  E2E p95  dropped  ready mean/max  GPU-h    cost   idle
+static 6 replicas                     100%    0.114s    0.319s    17.6s        0           6.0/6   4.50  $11.25  21.9%
+HPA vllm-queue-depth                 80.3%    0.144s     54.1s    69.3s        0           3.7/8   3.40   $8.50  7.99%
+HPA vllm-running-requests            87.0%    0.144s     13.3s    31.5s        0           3.9/8   3.19   $7.98  18.4%
+KEDA ScaledObject vllm-keda          90.0%    0.133s     11.2s    28.3s        0           3.5/8   3.08   $7.69  5.95%
+KEDA ScaledObject vllm-keda-zero     88.7%    0.138s     12.6s    30.4s        0           3.3/8   2.97   $7.44  9.14%
+
+attained = share of all requests completed within TTFT <= 2.00s and end-to-end <= 60.0s
+
+ready replicas over time
+  static 6 replicas                 ████████████████████████████████████████████████████████████  0..6
+  HPA vllm-queue-depth              ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▃▇███████▂▂▅▇███████▂▂▂▂▂▂▂▂▃█████████▅▂▂▂▂▂▂▂  0..8
+  HPA vllm-running-requests         ▂▂▂▂▂▂▂▂▂▂▂▂▂▃▃▃▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▄▄▄▄▃▃▃▃▅▅▆██████████████  0..8
+  KEDA ScaledObject vllm-keda       ▂▂▂▂▂▂▂▂▂▂▂▂▂▃▃▇██████▇▆▅▅▄▄▄▄▄▄▃▂▂▂▃▃▃▃▃▃▃▆████████▇▆▆▅▄▃▃▂  0..8
+  KEDA ScaledObject vllm-keda-zero  ▁▁▂▃▆▆▆▆▆▆▂▂▂▃▃▅▅▆▆▆▆▅▅▄▄▄▄▄▄▄▄▄▃▂▂▂▃▃▃▃▃▃▃▆███████▅▅▅▅▄▄▂▂▂  0..8
+  arrivals                          ▂▂▂▂▂▂▂▂▂▂▂▃▄▅▆▆▆▇▇▅▅▆▆▆▅▅▄▃▃▃▃▃▃▃▃▃▃▃▃▃▄████████▅▃▂▃▂▂▂▂▂▂▂  0..4.7 req/s
